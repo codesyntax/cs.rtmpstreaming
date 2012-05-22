@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<site>
+ <property name="streaming_width" type="int"></property>
+ <property name="streaming_height" type="int"></property>
+ <property name="streaming_protocol" type="string"></property>
+ <property name="streaming_server" type="string"></property>
+ <property name="streaming_file" type="string"></property>
+ <property name="streaming_image_url" type="string"></property>
+</site>

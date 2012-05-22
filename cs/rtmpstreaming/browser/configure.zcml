@@ -1,0 +1,16 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="cs.rtmpstreaming">
+    <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="streaming_view"
+      class=".streamingview.StreamingView"
+      template="streamingview.pt"
+      allowed_interface=".streamingview.IStreamingView"
+      permission="zope2.View"
+      />
+
+</configure>
