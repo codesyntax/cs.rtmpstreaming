@@ -1,24 +1,25 @@
-<dl class="portlet portletStreamingPortlet"
+<div class="portlet portletStreamingPortlet"
     i18n:domain="cs.rtmpstreaming">
 
-    <dt class="portletHeader">
-        <span class="portletTopLeft"></span>
-        <span>
-           Header
-        </span>
-        <span class="portletTopRight"></span>
-    </dt>
+    <div id="mediaplayer"></div>
 
-    <dd class="portletItem odd">
-        Body text
-    </dd>
+    <script type="text/javascript"
+            tal:content="view/script_code">// <![CDATA[
+      jwplayer('mediaplayer').setup({
+        'id': 'playerID',
+        'width': '480',
+        'height': '270',
+        'provider': 'rtmp',
+        'streamer': 'rtmp://193.146.78.143/optibase/',
+        'file': 'AULAMAGNA',
+        'image': 'http://www.mondragon.edu/eu/enpresagintza/albisteak/logo.gif',
+        'modes': [
+            {type: 'flash', src: '/++resources++streaming/player.swf'}
+        ]
+      });
+    // ]]></script>
 
-    <dd class="portletFooter">
-        <span class="portletBottomLeft"></span>
-        <span>
-           Footer
-        </span>
-        <span class="portletBottomRight"></span>
-    </dd>
+</div>
 
-</dl>
+
+

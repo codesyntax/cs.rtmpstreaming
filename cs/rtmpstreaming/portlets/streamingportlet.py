@@ -21,14 +21,33 @@ class IStreamingPortlet(IPortletDataProvider):
     same.
     """
 
-    # TODO: Add any zope.schema fields here to capture portlet configuration
-    # information. Alternatively, if there are no settings, leave this as an
-    # empty interface - see also notes around the add form and edit form
-    # below.
+    protocol = schema.TextLine(title=_(u"Protocol"),
+                             description=_(u"Write the protocol of the server. Usualy RTMP"),
+                             default='rtmp',
+                             required=True)
 
-    # some_field = schema.TextLine(title=_(u"Some field"),
-    #                              description=_(u"A field to use"),
-    #                              required=True)
+
+    server = schema.TextLine(title=_(u"RTMP server address"),
+                             description=_(u"Write the address of the RTMP server"),
+                             required=True)
+
+    streaming_file = schema.TextLine(title=_(u"Streaming file"),
+                                     description=_(u"Usualy the last part of the URL"),
+                                     required=True)
+
+    image_url = schema.TextLine(title=_(u'Image URL'),
+                                description=_(u'Enter the URL of the splash image'),
+                                required=False)
+
+    width = schema.Int(title=_(u'Width'),
+                       default=480,
+                       required=True,
+                       )
+
+    height = schema.Int(title=_(u'Height'),
+                       default=270,
+                       required=True,
+                       )
 
 
 class Assignment(base.Assignment):
@@ -38,25 +57,26 @@ class Assignment(base.Assignment):
     with columns.
     """
 
-    implements(IStreamingPortlet)
+    implements(IStreamingPortlet)    
 
-    # TODO: Set default values for the configurable parameters here
+    def __init__(self, server=u'',
+                       streaming_file=u'',
+                       image_url=u'',
+                       width=480,
+                       height=270):
+        self.server = server
+        self.streaming_file = streaming_file
+        self.image_url = image_url
+        self.width = width
+        self.height = height
 
-    # some_field = u""
-
-    # TODO: Add keyword parameters for configurable parameters here
-    # def __init__(self, some_field=u''):
-    #    self.some_field = some_field
-
-    def __init__(self):
-        pass
 
     @property
     def title(self):
         """This property is used to give the title of the portlet in the
         "manage portlets" screen.
         """
-        return __(u"Streaming Portlet")
+        return _(u"Streaming Portlet")
 
 
 class Renderer(base.Renderer):
@@ -68,6 +88,32 @@ class Renderer(base.Renderer):
     """
 
     render = ViewPageTemplateFile('streamingportlet.pt')
+
+
+    def script_code(self):
+        """ It's hard to get correct JavaScript without errors in ZPT
+            so the JS code will be generated here
+        """
+        TEMPLATE = '''<![CDATA[
+      jwplayer('mediaplayer').setup({
+        'id': 'playerID',
+        'width': '%(width)s',
+        'height': '%(height)s',
+        'provider': '%(protocol)s',
+        'streamer': '%(server)s',
+        'file': '%(file)s',
+        'image': '%(image_url)s',
+        'modes': [
+            {type: 'flash', src: ''/++resources++streaming/player.swf'}
+        ]
+      });
+    // ]]>'''
+        return TEMPLATE % {'width': self.data.width,
+                           'height': self.data.height,
+                           'protocol': self.data.protocol,
+                           'server': self.data.server,
+                           'file': self.data.file,
+                           'image_url': self.data.image_url }
 
 
 # NOTE: If this portlet does not have any configurable parameters, you can
