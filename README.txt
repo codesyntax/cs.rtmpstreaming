@@ -1,6 +1,4 @@
-Introduction
-============
+cs.rtmpstreaming
+=================
 
-
-
-This product may contain traces of nuts.
+RTMP streaming portlet and view based on JWPlayer for Plone
