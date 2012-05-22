@@ -4,7 +4,7 @@
     <div id="mediaplayer"></div>
 
     <script type="text/javascript"
-            tal:content="view/script_code">// <![CDATA[
+            tal:content="structure view/script_code">// <![CDATA[
       jwplayer('mediaplayer').setup({
         'id': 'playerID',
         'width': '480',
