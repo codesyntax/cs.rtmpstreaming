@@ -23,7 +23,7 @@ class IStreamingPortlet(IPortletDataProvider):
 
     protocol = schema.TextLine(title=_(u"Protocol"),
                              description=_(u"Write the protocol of the server. Usualy RTMP"),
-                             default='rtmp',
+                             default=u'rtmp',
                              required=True)
 
 
@@ -60,11 +60,13 @@ class Assignment(base.Assignment):
     implements(IStreamingPortlet)    
 
     def __init__(self, server=u'',
+                       protocol=u'',
                        streaming_file=u'',
                        image_url=u'',
                        width=480,
                        height=270):
         self.server = server
+        self.protocol = protocol
         self.streaming_file = streaming_file
         self.image_url = image_url
         self.width = width
@@ -94,7 +96,7 @@ class Renderer(base.Renderer):
         """ It's hard to get correct JavaScript without errors in ZPT
             so the JS code will be generated here
         """
-        TEMPLATE = '''<![CDATA[
+        TEMPLATE = '''
       jwplayer('mediaplayer').setup({
         'id': 'playerID',
         'width': '%(width)s',
@@ -104,15 +106,15 @@ class Renderer(base.Renderer):
         'file': '%(file)s',
         'image': '%(image_url)s',
         'modes': [
-            {type: 'flash', src: ''/++resources++streaming/player.swf'}
+            {type: 'flash', src: '/++resource++streaming/player.swf'}
         ]
       });
-    // ]]>'''
+    '''
         return TEMPLATE % {'width': self.data.width,
                            'height': self.data.height,
                            'protocol': self.data.protocol,
                            'server': self.data.server,
-                           'file': self.data.file,
+                           'file': self.data.streaming_file,
                            'image_url': self.data.image_url }
 
 
