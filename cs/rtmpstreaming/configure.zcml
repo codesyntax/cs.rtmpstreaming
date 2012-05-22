@@ -6,8 +6,6 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="cs.rtmpstreaming">
 
-  <five:registerPackage package="." initialize=".initialize" />
-
   <genericsetup:registerProfile
       name="default"
       title="cs.rtmpstreaming"
@@ -16,6 +14,9 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   <!-- -*- extra stuff goes here -*- -->
+
+  <i18n:registerTranslations directory="locales" />
+  
 
   <include package=".portlets" />
   <browser:resourceDirectory
