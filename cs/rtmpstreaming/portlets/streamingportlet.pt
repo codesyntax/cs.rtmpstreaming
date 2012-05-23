@@ -28,7 +28,8 @@
         tal:condition="view/data/extra_text|view/data/extra_link|nothing">
      <span class="portletBottomLeft"></span>
         <a href="" tal:condition="view/data/extra_link"
-           tal:attributes="href view/data/extra_text|view/data/extra_link">
+           tal:attributes="href view/data/extra_link"
+           tal:content="view/data/extra_text|view/data/extra_link">
            Link text
         </a>  
         <span tal:condition="not:view/data/extra_link"

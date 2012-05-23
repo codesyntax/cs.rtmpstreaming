@@ -75,13 +75,17 @@ class Assignment(base.Assignment):
                        streaming_file=u'',
                        image_url=u'',
                        width=480,
-                       height=270):
+                       height=270, 
+                       extra_text=u'',
+                       extra_link=u''):
         self.server = server
         self.protocol = protocol
         self.streaming_file = streaming_file
         self.image_url = image_url
         self.width = width
         self.height = height
+        self.extra_text = extra_text
+        self.extra_link = extra_link
 
 
     @property
