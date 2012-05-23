@@ -1,7 +1,12 @@
-<div class="portlet portletStreamingPortlet"
+<dl class="portlet portletStreamingPortlet"
     i18n:domain="cs.rtmpstreaming">
 
-    <div id="mediaplayer"></div>
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem" id="mediaplayer"></dd>
 
     <script type="text/javascript"
             tal:content="structure view/script_code">// <![CDATA[
@@ -19,7 +24,24 @@
       });
     // ]]></script>
 
-</div>
+    <dd class="portletFooter"
+        tal:condition="view/data/extra_text|view/data/extra_link|nothing">
+     <span class="portletBottomLeft"></span>
+        <a href="" tal:condition="view/data/extra_link"
+           tal:attributes="href view/data/extra_text|view/data/extra_link">
+           Link text
+        </a>  
+        <span tal:condition="not:view/data/extra_link"
+              tal:content="view/data/extra_text">
+              Text
+        </span>
+                
+
+     <span class="portletBottomRight"></span>       
+
+    </dd>
+
+</dd>
 
 
 
