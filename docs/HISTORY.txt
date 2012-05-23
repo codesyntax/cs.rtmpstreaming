@@ -1,13 +1,17 @@
 Changelog
 =========
 
-1.1 (UNRELEASED)
+1.0.2 (2012/05/23)
 ---------------------
+
+- Include an option to add a text and a link to the portlet
+  [erral]
 
 1.0.1 (2012/05/22)
 --------------------
 
 - Fix setup.py
+  [erral]
 
 1.0 (2012/05/22)
 -------------------
