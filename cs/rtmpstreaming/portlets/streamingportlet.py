@@ -51,10 +51,12 @@ class IStreamingPortlet(IPortletDataProvider):
 
     extra_text = schema.TextLine(title=_(u'Extra text'),
                                  description=_(u'Extra text to show after the video'),
+                                 default=u'',
                                  required=False)
 
     extra_link = schema.TextLine(title=_(u'Extra info link'),
                                  description=_(u'URL of the extra information site'),
+                                 default=u'',
                                  required=False)
 
 
