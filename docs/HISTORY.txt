@@ -4,7 +4,10 @@ Changelog
 1.1 (UNRELEASED)
 ---------------------
 
-1.0.3 (2012/05/23)
+- add manifests [Mikel Larreategi <mlarreategi@codesyntax.com>]
+
+- bump version [Mikel Larreategi <mlarreategi@codesyntax.com>]
+
 ------------------------
 
 - Brown bag release
